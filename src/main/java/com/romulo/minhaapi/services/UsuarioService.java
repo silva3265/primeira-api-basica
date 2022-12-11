@@ -7,16 +7,18 @@ import org.springframework.stereotype.Service;
 
 import com.romulo.minhaapi.domain.Usuario;
 import com.romulo.minhaapi.repositories.UsuarioRepository;
+import com.romulo.minhaapi.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class UsuarioService {
-	
+
 	@Autowired
 	private UsuarioRepository repository;
-	
+
 	public Usuario findById(Integer id) {
 		Optional<Usuario> obj = repository.findById(id);
-		return obj.orElse(null); //se ele nao encontrar o objeto 'obj' ele vai vir nullo
+		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + 
+				", Tipo: " + Usuario.class.getName()));
 	}
 
 }
