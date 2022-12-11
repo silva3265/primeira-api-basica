@@ -26,4 +26,12 @@ public class UsuarioService {
 		return repository.findAll();
 	}
 
+	public Usuario update(Integer id, Usuario obj) {
+		Usuario newObj = findById(id);
+		newObj.setNome(obj.getNome());
+		newObj.setLogin(obj.getLogin());
+		newObj.setSenha(obj.getSenha());
+		return repository.save(newObj);
+	}
+
 }
