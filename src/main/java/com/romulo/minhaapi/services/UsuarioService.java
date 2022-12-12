@@ -18,8 +18,8 @@ public class UsuarioService {
 
 	public Usuario findById(Integer id) {
 		Optional<Usuario> obj = repository.findById(id);
-		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + 
-				", Tipo: " + Usuario.class.getName()));
+		return obj.orElseThrow(() -> new ObjectNotFoundException(
+				"Objeto não encontrado! Id: " + id + ", Tipo: " + Usuario.class.getName()));
 	}
 
 	public List<Usuario> findAll() {
@@ -34,4 +34,16 @@ public class UsuarioService {
 		return repository.save(newObj);
 	}
 
+	public Usuario create(Usuario obj) {
+		obj.setId(null);
+		return repository.save(obj);
+	}
+
 }
+
+
+
+
+
+
+
